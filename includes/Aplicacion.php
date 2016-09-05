@@ -1,6 +1,6 @@
 <?php
 
-namespace Examen1314\includes;
+namespace AW_LoginYTweets\includes;
 
 class Aplicacion{
   private static $instancia;

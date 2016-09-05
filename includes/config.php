@@ -20,7 +20,7 @@ ini_set('default_charset', 'UTF-8');
 setLocale(LC_ALL, 'es_ES.UTF.8');
 
 spl_autoload_register(function ($class) {
-    $prefix = 'Examen1314\\includes';
+    $prefix = 'AW_LoginYTweets\\includes';
     $base_dir = __DIR__ . '/';
     $len = strlen($prefix);
     if (strncmp($prefix, $class, $len) !== 0) {
@@ -32,5 +32,5 @@ spl_autoload_register(function ($class) {
         require $file;
     }
 });
-$app = \Examen1314\includes\Aplicacion::getSingleton();
+$app = \AW_LoginYTweets\includes\Aplicacion::getSingleton();
 $app->init(array('host'=>BD_HOST, 'bd'=>BD_NAME, 'user'=>BD_USER, 'pass'=>BD_PASS), RUTA_APP, RAIZ_APP);

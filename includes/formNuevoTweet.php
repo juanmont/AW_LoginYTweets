@@ -1,7 +1,7 @@
 <?php
 include ('config.php');
 require_once 'ModelScripts/GestorTweets.php';
-use \Examen1314\includes\Aplicacion as App;
+use \AW_LoginYTweets\includes\Aplicacion as App;
 //use \AW\proyecto\estatica\includes\ModelScripts\GestorUsuarios as GestorUsuarios;
 	$app = App::getSingleton();
 	$gestorT = new GestorTweets();//::new GestorUsuarios();
