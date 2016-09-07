@@ -1,4 +1,5 @@
 <?php
+namespace Examen1314\includes\ModelScripts;
 
 	class tweet{
 		private $id;

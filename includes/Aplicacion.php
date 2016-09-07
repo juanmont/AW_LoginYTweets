@@ -1,7 +1,5 @@
 <?php
-
-namespace AW_LoginYTweets\includes;
-
+namespace Examen1314\includes;
 class Aplicacion{
   private static $instancia;
   private $bdDatosConexion;

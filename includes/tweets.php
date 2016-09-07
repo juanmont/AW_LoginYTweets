@@ -1,27 +1,27 @@
 <?php
-class vistaTweets{
+namespace Examen1314\includes;
+require_once __DIR__.'/config.php';
+use Examen1314\includes\ModelScripts\GestorTweets as gestorTweets;
+use Examen1314\includes\ModelScripts\GestorUsuarios as gestorUsuarios;
+class Tweets{
 		
 		private $gestorTweets;
 		private $gestorUsuarios;
 		function __construct(){
-			require_once 'ModelScripts/GestorTweets.php';
-			$this->gestorTweets = new GestorTweets();
-			require_once 'ModelScripts/GestorUsuarios.php';
-			$this->gestorUsuarios = new GestorUsuarios();
+			
 		}
 
-	function muestraTweets(){
+	public static function muestraTweets(){
 		
-		$lista = $this->gestorTweets->getListaTweets();
-		$iterator = $lista->getIterator();
+		$lista = gestorTweets::getSingleton()->getListaTweets();
 
-		while($iterator->valid()) {
-			$texto =  $iterator->current()->getTexto();
-			$idUsu = $iterator->current()->getIdUsu();
-			$id = $iterator->current()->getId();
-			$hora= $iterator->current()->getHora();
+		foreach($lista as $t) {
+			$texto =  $t->getTexto();
+			$idUsu = $t->getIdUsu();
+			$id = $t->getId();
+			$hora= $t->getHora();
 
-			$nombreUsuario = $this->gestorUsuarios->getNombreUsuario($idUsu);
+			$nombreUsuario = gestorUsuarios::getSingleton()->getNombreUsuario($idUsu);
 			  	 $html = <<<EOS
   				<div class="tweet">
 				  		<p> $texto </p>
@@ -29,7 +29,6 @@ class vistaTweets{
 			  	</div> 
 EOS;
 			echo $html;  		
-		    $iterator->next();
 		}		 	
 	}
 

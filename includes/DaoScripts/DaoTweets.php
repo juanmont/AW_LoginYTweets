@@ -1,10 +1,17 @@
 <?php
+	namespace Examen1314\includes\DaoScripts;
+	require_once __DIR__.'/../config.php';
+	use \Examen1314\includes\Aplicacion as App;
 
-	require_once '/../config.php';
-	use \AW_LoginYTweets\includes\Aplicacion as App;
 	class DaoTweets{
+		private static $instancia;
 
-		
+		public static function getSingleton() {
+      if (  !self::$instancia instanceof self) {
+         self::$instancia = new self;
+      }
+      return self::$instancia;
+  }
 
 		public function getListaTweets(){
 			$app = App::getSingleton();

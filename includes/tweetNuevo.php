@@ -1,5 +1,5 @@
 <?php
-	use \AW_LoginYTweets\includes\Aplicacion as App;
+	use \Examen1314\includes\Aplicacion as App;
 	$app = App::getSingleton();
 	if ($app->usuarioLogueado()) {
 			$html = <<<EOS

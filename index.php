@@ -1,3 +1,7 @@
+<?php
+require_once __DIR__.'/includes/config.php';
+use \Examen1314\includes\tweets;
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,17 +17,20 @@
 	</script>
 </head>
 <body>
-	<?php require('includes/config.php'); ?>
 	<div class="container">
 		<h1>Bienvenido a TwitterUCM!</h1>
-		<?php require 'includes/cabecera.php'; ?>
+		<?php
+		require RUTA_APP.'../includes/cabecera.php'; 
+		?>
 		<div class="contenido" id="contenido">
-			<?php require 'includes/tweetNuevo.php'; ?>
-			<?php
-					require_once "includes/tweets.php";
-					$vista = new vistaTweets();
-					$vista->muestraTweets();
-				?>	
+			<div id="nuevo">
+				<?php  $FormNuevoTweet = new \Examen1314\includes\FormNuevoTweet(); $FormNuevoTweet->gestiona(); ?>
+			</div>
+			
+			<div id="listaTweets">
+				<?php  Tweets::muestraTweets(); ?>
+			</div>
+				
 		</div>
 	</div>
 </body>
