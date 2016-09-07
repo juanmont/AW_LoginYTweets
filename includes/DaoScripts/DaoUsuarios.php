@@ -2,7 +2,7 @@
 	
 	namespace Examen1314\includes\DaoScripts;
 	use \Examen1314\includes\Aplicacion as App;
-	use \Examen1314\includes\ModelScript\Usuario as Usuario;
+	use \Examen1314\includes\ModelScripts\Usuario;
 
 	class DaoUsuarios{
 		private static $instancia;
@@ -32,11 +32,9 @@
             $con = $app->conexionBd();
 			$sql = sprintf("SELECT * FROM usuarios WHERE nombre='%s' ", $con->real_escape_string($nombre));
 			$rs = $con->query($sql) or die ($con->error);
-	
 			if($row = $rs->fetch_assoc()){    
 					$passBd = $row["pass"];
-					echo strlen($passBd);
-					if (password_verify($pass, $passBd)){
+					if (password_verify($pass.pimienta, $passBd)){
 						$usuario = Usuario::crea($row["id"], $row["nombre"], $row["pass"], $row["correo"]);
 						$app->login($usuario);
 						return $usuario;
@@ -48,9 +46,7 @@
 		public function insertarUsuario($nombre, $email, $pass){
 			$app = App::getSingleton();
     		$con = $app->conexionBd();
-			// AÑADIR PIMIENTA (CONSTANTE EN CONFIG) $pass.constante
 			$pass = password_hash($pass.pimienta, PASSWORD_BCRYPT);
-
 			$sql = "INSERT INTO usuarios(nombre, correo, pass) VALUES";
 			$sql.= "('".$nombre."' , '".$email."', '".$pass."')";
 			$rs = $con->query($sql) or die ($con->error);
